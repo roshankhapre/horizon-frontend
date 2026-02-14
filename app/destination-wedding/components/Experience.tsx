@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation } from "swiper/modules"
+import { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
-import "swiper/css"
+import "swiper/css";
 
 const data = [
   {
@@ -62,16 +62,16 @@ const data = [
     desc: "Intimate gatherings to extend the happiness.",
     img: "/destination-wedding/pre-wedding.png",
   },
-]
+];
 
 export default function Experience() {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const [activeIndex, setActiveIndex] = useState(0)
-  const swiperRef = useRef(null)
+  // ✅ FIXED: Prevent TypeScript error
+  const swiperRef = useRef<any>(null);
 
   return (
     <section className="relative py-28 bg-white overflow-hidden">
-
       {/* FLOWER BACKGROUND */}
       <img
         src="/destination-wedding/flower.svg"
@@ -84,7 +84,6 @@ export default function Experience() {
       />
 
       <div className="relative z-10 max-w-[1380px] mx-auto px-6">
-
         {/* Heading */}
         <h2 className="text-center font-gilroy-bold text-[#9B2C5D] text-3xl md:text-5xl mb-6">
           Unforgettable Experiences for Your Destination Wedding
@@ -100,16 +99,12 @@ export default function Experience() {
           modules={[Navigation]}
           spaceBetween={32}
           slidesPerView={1.15}
-
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-
           navigation={{
             nextEl: ".exp-next",
             prevEl: ".exp-prev",
           }}
-
           breakpoints={{
             640: { slidesPerView: 1.5 },
             768: { slidesPerView: 2.2 },
@@ -126,16 +121,10 @@ export default function Experience() {
 
         {/* ===== CONTROLS ===== */}
         <div className="flex justify-center items-center gap-10 mt-16">
-
           {/* LEFT ARROW */}
           <button
-            className="
-              exp-prev
-              text-[28px]
-              text-[#667085]
-              hover:text-[#9B2C5D]
-              transition
-            "
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="exp-prev text-[28px] text-[#667085] hover:text-[#9B2C5D] transition"
           >
             ←
           </button>
@@ -150,10 +139,10 @@ export default function Experience() {
                   w-[6px] h-[6px]
                   rounded-full
                   transition-all duration-300
-
-                  ${i === activeIndex
-                    ? "bg-[#F97316] scale-125"
-                    : "bg-[#D0D5DD] hover:bg-[#F97316]/60"
+                  ${
+                    i === activeIndex
+                      ? "bg-[#F97316] scale-125"
+                      : "bg-[#D0D5DD] hover:bg-[#F97316]/60"
                   }
                 `}
               />
@@ -162,28 +151,21 @@ export default function Experience() {
 
           {/* RIGHT ARROW */}
           <button
-            className="
-              exp-next
-              text-[28px]
-              text-[#667085]
-              hover:text-[#9B2C5D]
-              transition
-            "
+            onClick={() => swiperRef.current?.slideNext()}
+            className="exp-next text-[28px] text-[#667085] hover:text-[#9B2C5D] transition"
           >
             →
           </button>
-
         </div>
-
       </div>
     </section>
-  )
+  );
 }
 
-function Card({ item }) {
+// ✅ FIXED: Prevent implicit any error
+function Card({ item }: any) {
   return (
     <div className="relative h-[360px] rounded-[30px] overflow-hidden group">
-
       <img
         src={item.img}
         alt={item.title}
@@ -193,10 +175,13 @@ function Card({ item }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
       <div className="absolute bottom-0 p-6 text-white">
-        <h3 className="font-gilroy-semibold text-[20px] mb-2">{item.title}</h3>
-        <p className="text-[14px] opacity-90 leading-relaxed">{item.desc}</p>
+        <h3 className="font-gilroy-semibold text-[20px] mb-2">
+          {item.title}
+        </h3>
+        <p className="text-[14px] opacity-90 leading-relaxed">
+          {item.desc}
+        </p>
       </div>
-
     </div>
-  )
+  );
 }
