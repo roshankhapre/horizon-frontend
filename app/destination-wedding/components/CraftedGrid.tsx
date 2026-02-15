@@ -2,152 +2,115 @@
 
 export default function CraftedGrid() {
   return (
-    <section className="relative py-24 bg-white overflow-visible">
-       {/* RIGHT FLOWER */}
-         <img
+    <section className="relative py-16 sm:py-20 lg:py-24 bg-white overflow-hidden">
+      
+      {/* Decorative Flower */}
+      <img
         src="/destination-wedding/crafted-flower.svg"
+        alt=""
         className="
-    absolute right-[90] top-[-40px]
-    w-[420px]        /* mobile */
-    md:w-[480px]     /* tablet */
-    lg:w-[1500px]     /* desktop */
-    opacity-100
-    pointer-events-none
-  "
+          absolute
+          right-[-40px]
+          top-[-120px]
+
+          w-[260px]
+          sm:w-[340px]
+          md:w-[420px]
+          lg:w-[600px]
+          xl:w-[900px]
+          2xl:w-[1100px]
+
+          opacity-100
+          pointer-events-none
+          select-none
+        "
       />
 
-
-
-<div
-  className="
-    relative
-    z-10
-    w-full
-    mx-auto
-    px-6
-    md:px-10
-    lg:px-16
-    max-w-[1100px]
-    md:max-w-[1200px]
-    lg:max-w-[1300px]
-    xl:max-w-[1400px]
-    2xl:max-w-[1500px]
-  "
->
-
-
+      {/* Container */}
+      <div
+        className="
+          relative z-10
+          mx-auto
+          px-5 sm:px-6 md:px-10 lg:px-16
+          max-w-[1250px] xl:max-w-[1350px]
+        "
+      >
         {/* HEADING */}
-        <h2 className="text-center font-gilroy-bold text-[#9B2C5D] text-3xl md:text-5xl mb-4">
+        <h2 className="text-center font-gilroy-bold text-[#9B2C5D] text-2xl sm:text-3xl md:text-5xl">
           Crafted For Your Dreams
         </h2>
 
-        <p className="text-center text-[#475467] mb-16 max-w-[720px] mx-auto">
+        <p className="text-center text-[#475467] mt-3 mb-10 sm:mb-14 md:mb-16 max-w-[720px] mx-auto text-sm sm:text-base">
           Best Selling And Trending Wedding Themes That Define Elegance And
           Celebration
         </p>
 
-        {/* ===== DESKTOP MOSAIC GRID ===== */}
-        <div className="hidden md:grid grid-cols-12 gap-6">
-          {/* LEFT COLUMN (6 cols) */}
-          <div className="col-span-6 grid grid-cols-2 gap-6">
+        {/* ===== DESKTOP / TABLET GRID ===== */}
+        <div className="hidden md:grid grid-cols-12 gap-3 lg:gap-4">
+          
+          {/* LEFT */}
+          <div className="col-span-6 grid grid-cols-2 gap-3 lg:gap-4">
+            
             {/* Top Wide */}
             <GridImage
               src="/destination-wedding/grid1.png"
-              className="col-span-2 h-[260px]"
+              className="col-span-2 aspect-[20/10]"
             />
 
-            {/* Four small images */}
-            <GridImage
-              src="/destination-wedding/grid2.png"
-              className="h-[190px]"
-            />
-            <GridImage
-              src="/destination-wedding/grid3.png"
-              className="h-[190px]"
-            />
-            <GridImage
-              src="/destination-wedding/grid4.png"
-              className="h-[190px]"
-            />
-            <GridImage
-              src="/destination-wedding/grid5.png"
-              className="h-[190px]"
-            />
+            {/* Small Images */}
+            <GridImage src="/destination-wedding/grid2.png" className="aspect-square" />
+            <GridImage src="/destination-wedding/grid3.png" className="aspect-square" />
+            <GridImage src="/destination-wedding/grid4.png" className="aspect-square" />
+            <GridImage src="/destination-wedding/grid5.png" className="aspect-square" />
           </div>
 
-          {/* MIDDLE TALL IMAGE (3 cols) */}
+          {/* MIDDLE (Balanced Height) */}
           <GridImage
             src="/destination-wedding/grid7.png"
-            className="col-span-3 h-[700px]"
+            className="col-span-3 h-full min-h-[460px] lg:min-h-[580px]"
           />
 
-          {/* RIGHT COLUMN (3 cols) */}
-          <div className="col-span-3 flex flex-col gap-6">
-            {/* Right Top */}
+          {/* RIGHT */}
+          <div className="col-span-3 flex flex-col gap-3 lg:gap-4">
             <GridImage
               src="/destination-wedding/grid6.png"
-              className="h-[340px]"
+              className="flex-1 min-h-[220px]"
             />
-
-            {/* Right Bottom */}
             <GridImage
               src="/destination-wedding/grid8.png"
-              className="h-[340px]"
+              className="flex-1 min-h-[220px]"
             />
           </div>
         </div>
 
         {/* ===== MOBILE STACK ===== */}
-
-        <div className="md:hidden flex flex-col gap-5">
-          {/* Top Wide */}
+        <div className="md:hidden flex flex-col gap-4">
+          
           <GridImage
             src="/destination-wedding/grid1.png"
-            className="h-[220px]"
+            className="aspect-[16/10]"
           />
 
-          {/* Two Side */}
-          <div className="grid grid-cols-2 gap-5">
-            <GridImage
-              src="/destination-wedding/grid2.png"
-              className="h-[160px]"
-            />
-            <GridImage
-              src="/destination-wedding/grid3.png"
-              className="h-[160px]"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <GridImage src="/destination-wedding/grid2.png" className="aspect-square" />
+            <GridImage src="/destination-wedding/grid3.png" className="aspect-square" />
           </div>
 
-          {/* Two Side */}
-          <div className="grid grid-cols-2 gap-5">
-            <GridImage
-              src="/destination-wedding/grid4.png"
-              className="h-[160px]"
-            />
-            <GridImage
-              src="/destination-wedding/grid5.png"
-              className="h-[160px]"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <GridImage src="/destination-wedding/grid4.png" className="aspect-square" />
+            <GridImage src="/destination-wedding/grid5.png" className="aspect-square" />
           </div>
 
-          {/* Bottom Section (Tall Left + Two Right) */}
-          <div className="grid grid-cols-2 gap-5">
-            {/* Tall Left */}
+          <div className="grid grid-cols-2 gap-4">
+            
             <GridImage
               src="/destination-wedding/grid7.png"
-              className="h-[380px]"
+              className="h-full min-h-[260px]"
             />
 
-            {/* Right Column */}
-            <div className="flex flex-col gap-5">
-              <GridImage
-                src="/destination-wedding/grid6.png"
-                className="h-[180px]"
-              />
-              <GridImage
-                src="/destination-wedding/grid8.png"
-                className="h-[180px]"
-              />
+            <div className="flex flex-col gap-4">
+              <GridImage src="/destination-wedding/grid6.png" className="flex-1" />
+              <GridImage src="/destination-wedding/grid8.png" className="flex-1" />
             </div>
           </div>
         </div>
@@ -155,29 +118,32 @@ export default function CraftedGrid() {
     </section>
   );
 }
+
 type GridImageProps = {
-  src: string
-  className?: string
-}
+  src: string;
+  className?: string;
+};
 
 function GridImage({ src, className = "" }: GridImageProps) {
   return (
     <div
       className={`
         relative
-        rounded-[26px]
+        rounded-[20px] sm:rounded-[24px]
         overflow-hidden
         group
+        bg-gray-100
         ${className}
       `}
     >
       <img
         src={src}
         alt=""
+        loading="lazy"
         className="
           w-full h-full
           object-cover
-          transition duration-700
+          transition-transform duration-700 ease-out
           group-hover:scale-105
         "
       />

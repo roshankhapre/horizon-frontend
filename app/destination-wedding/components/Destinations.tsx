@@ -81,58 +81,93 @@ export default function Destinations() {
 
         {/* SWIPER */}
         <Swiper
-          modules={[Navigation]}
-          spaceBetween={28}
+          spaceBetween={32}
           slidesPerView={1.15}
+          centeredSlides={true}
+          loop={true}
+          speed={800}
+          grabCursor={true}
+          watchSlidesProgress={true}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          navigation={{
-            nextEl: ".dest-next",
-            prevEl: ".dest-prev",
-          }}
+          onSlideChange={(swiper) =>
+            setActiveIndex(swiper.realIndex % resorts.length)
+          }
           breakpoints={{
-            640: { slidesPerView: 1.35 },
-            768: { slidesPerView: 2.05 },
-            1024: { slidesPerView: 3.15 },
-            1280: { slidesPerView: 3.25 },
+            640: {
+              slidesPerView: 1.5,
+              centeredSlides: true,
+            },
+            768: {
+              slidesPerView: 2.2,
+              centeredSlides: false,
+            },
+            1024: {
+              slidesPerView: 3,
+              centeredSlides: false,
+            },
+            1280: {
+              slidesPerView: 3.4,
+              centeredSlides: false,
+            },
           }}
         >
           {resorts.map((r, i) => (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={i} className="!flex justify-center">
               <ResortCard r={r} />
             </SwiperSlide>
           ))}
         </Swiper>
 
         {/* CONTROLS */}
-        <div className="flex justify-center items-center gap-10 mt-14">
+        <div className="flex justify-center items-center gap-12 mt-14">
+          {/* LEFT */}
           <button
             onClick={() => swiperRef.current?.slidePrev()}
-            className="dest-prev text-[28px] text-[#667085] hover:text-[#9B2C5D] transition"
+            className="
+      w-16 h-16
+      rounded-full
+      bg-[#FFFFFF]
+      flex items-center justify-center
+      text-black
+      shadow-md
+      hover:bg-[#E4E7EC]
+      transition
+      duration-300
+    "
           >
             ←
           </button>
 
-          <div className="flex gap-3">
-            {[...Array(TOTAL_DOTS)].map((_, i) => (
+          {/* DOTS */}
+          <div className="flex items-center gap-4">
+            {resorts.map((_, i) => (
               <button
                 key={i}
-                onClick={() => swiperRef.current?.slideTo(i)}
+                onClick={() => swiperRef.current?.slideToLoop(i)}
                 className={`
-                  w-[6px] h-[6px] rounded-full transition
-                  ${
-                    i === activeIndex
-                      ? "bg-[#F97316] scale-125"
-                      : "bg-[#D0D5DD]"
-                  }
-                `}
+          w-3 h-3
+          rounded-full
+          transition-all duration-300
+          ${activeIndex === i ? "bg-[#F97316] scale-110" : "bg-[#D0D5DD]"}
+        `}
               />
             ))}
           </div>
 
+          {/* RIGHT */}
           <button
             onClick={() => swiperRef.current?.slideNext()}
-            className="dest-next text-[28px] text-[#667085] hover:text-[#9B2C5D] transition"
+            className="
+      w-16 h-16
+      rounded-full
+      bg-[#FFFFFF]
+      flex items-center justify-center
+      text-black
+      shadow-md
+      hover:bg-[#E4E7EC]
+      transition
+      duration-300
+    "
           >
             →
           </button>

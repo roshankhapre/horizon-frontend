@@ -16,15 +16,15 @@ export default function DestinationWeddingPage() {
     <main className="bg-[#f6f7f9]">
       <Hero />
       <About />
-      <Experience />
-      <Destinations />
-      <WhyChoose />
-      <Gallery />
-      <CraftedGrid />
+     <Experience />
+       <Destinations />
+     <WhyChoose />
+   <Gallery />
+           <CraftedGrid />
       <StyleSlider />
       <DreamPlaces />
       <BlogIdeas />
-      <CustomizeCTA />
+     <CustomizeCTA /> 
     </main>
   )
 }

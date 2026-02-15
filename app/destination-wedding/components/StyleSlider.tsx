@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 
@@ -28,21 +29,18 @@ const styles: StyleItem[] = [
 
 export default function StyleSlider() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-
-  // ✅ Fix swiper ref typing
-  const swiperRef = useRef<any>(null);
-
-  const TOTAL_DOTS = 4;
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <section className="relative py-28 bg-white overflow-hidden">
-      {/* RIGHT FLOWER */}
+
       <img
         src="/destination-wedding/style/style-flower.svg"
         className="absolute right-0 top-[-10px] w-[420px] md:w-[180px] lg:w-[520px] opacity-90 pointer-events-none"
       />
 
       <div className="relative z-10 max-w-[1380px] mx-auto px-6">
+
         {/* HEADING */}
         <h2 className="text-center font-gilroy-bold text-[#9B2C5D] text-3xl md:text-5xl mb-4">
           What’s Your Style?
@@ -52,22 +50,22 @@ export default function StyleSlider() {
           Explore Curated Venue Styles Tailored To Your Dream Day.
         </p>
 
-        {/* SLIDER */}
+        {/* ===== SLIDER ===== */}
         <Swiper
           modules={[Navigation]}
-          spaceBetween={26}
+          spaceBetween={32}
           slidesPerView={1.15}
+          loop={true}
+          speed={600}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          navigation={{
-            nextEl: ".style-next",
-            prevEl: ".style-prev",
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.realIndex);
           }}
           breakpoints={{
             640: { slidesPerView: 1.5 },
             768: { slidesPerView: 2.2 },
-            1024: { slidesPerView: 3.1 },
-            1280: { slidesPerView: 3.4 },
+            1024: { slidesPerView: 3.2 },
+            1280: { slidesPerView: 3.6 },
           }}
         >
           {styles.map((item, i) => (
@@ -77,36 +75,67 @@ export default function StyleSlider() {
           ))}
         </Swiper>
 
-        {/* CONTROLS */}
-        <div className="flex justify-center items-center gap-10 mt-14">
+        {/* ===== CONTROLS ===== */}
+        <div className="flex justify-center items-center gap-12 mt-14">
+
+          {/* LEFT */}
           <button
             onClick={() => swiperRef.current?.slidePrev()}
-            className="style-prev text-[26px] text-[#667085] hover:text-[#9B2C5D]"
+            className="
+              w-16 h-16
+              rounded-full
+              bg-white
+              flex items-center justify-center
+              text-black
+              shadow-md
+              hover:bg-[#E4E7EC]
+              transition duration-300
+            "
           >
             ←
           </button>
 
-          <div className="flex gap-3">
-            {[...Array(TOTAL_DOTS)].map((_, i) => (
+          {/* DOTS (One Per Slide) */}
+          <div className="flex items-center gap-3 flex-wrap max-w-[300px] justify-center">
+            {styles.map((_, i) => (
               <button
                 key={i}
-                onClick={() => swiperRef.current?.slideTo(i)}
-                className={`w-[6px] h-[6px] rounded-full transition-all ${
-                  i === activeIndex
-                    ? "bg-[#F97316] scale-125"
-                    : "bg-[#D0D5DD]"
-                }`}
+                onClick={() =>
+                  swiperRef.current?.slideToLoop(i)
+                }
+                className={`
+                  w-2.5 h-2.5
+                  rounded-full
+                  transition-all duration-300
+                  ${
+                    activeIndex === i
+                      ? "bg-[#F97316] scale-125"
+                      : "bg-[#D0D5DD]"
+                  }
+                `}
               />
             ))}
           </div>
 
+          {/* RIGHT */}
           <button
             onClick={() => swiperRef.current?.slideNext()}
-            className="style-next text-[26px] text-[#667085] hover:text-[#9B2C5D]"
+            className="
+              w-16 h-16
+              rounded-full 
+              bg-white
+              flex items-center justify-center
+              text-black
+              shadow-md
+              hover:bg-[#E4E7EC]
+              transition duration-300
+            "
           >
             →
           </button>
+
         </div>
+
       </div>
     </section>
   );
@@ -116,10 +145,10 @@ type StyleCardProps = {
   item: StyleItem;
 };
 
-/* CARD */
 function StyleCard({ item }: StyleCardProps) {
   return (
     <div className="relative h-[340px] rounded-[30px] overflow-hidden group">
+
       <img
         src={item.img}
         alt={item.title}
@@ -133,6 +162,7 @@ function StyleCard({ item }: StyleCardProps) {
           {item.title}
         </h3>
       </div>
+
     </div>
   );
 }

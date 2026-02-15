@@ -1,76 +1,92 @@
+import Image from "next/image";
+
 export default function About() {
   return (
-    <section className="relative py-16 md:py-28 bg-white overflow-hidden">
+    <section className="relative bg-white py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden">
 
-      {/* ===== Left Floral Decoration  ===== */}
-      <img
+      {/* ================= LEFT FLORAL ================= */}
+      <Image
         src="/destination-wedding/about-flower-left.png"
-        alt="flower"
+        alt="flower decoration"
+        width={400}
+        height={400}
         className="
           absolute
-          bottom-0
-          -left-10 md:-left-16 lg:-left-24
-          w-40 md:w-60 lg:w-72
+          -bottom-16
+          -left-16
+          sm:-left-20
+          md:-left-24
+          lg:-left-28
+          w-32 sm:w-40 md:w-56 lg:w-72
           opacity-60
           pointer-events-none
           select-none
+          z-0
         "
+        priority
       />
 
-      {/* ===== Right Floral Decoration  ===== */}
-      <img
+      {/* ================= RIGHT FLORAL ================= */}
+      <Image
         src="/destination-wedding/about-flower-right.png"
-        alt="flower"
+        alt="flower decoration"
+        width={400}
+        height={400}
         className="
           absolute
-          top-20
-          -right-10 md:-right-16 lg:right-0
-          w-40 md:w-60 lg:w-72
+          top-10
+          -right-1
+          sm:-right-20
+          md:-right-24
+          lg:right-0
+          w-32 sm:w-40 md:w-56 lg:w-72
           opacity-70
           pointer-events-none
           select-none
+          z-0
         "
+        priority
       />
 
-      {/* ===== Content ===== */}
-      <div className="
-        relative z-10
-        mx-auto
-        px-6
-        text-center
-
-        max-w-[650px]
-        md:max-w-[760px]
-        lg:max-w-[900px]
-        xl:max-w-[1000px]
-      ">
-
-        {/* Heading */}
-        <h2 className="
-          font-gilroy-bold
-          text-[#9B2C5D]
-          mb-8 md:mb-10
-
-          text-3xl
-          sm:text-4xl
-          md:text-[42px]
-          lg:text-[48px]
-        ">
+      {/* ================= CONTENT WRAPPER ================= */}
+      <div
+        className="
+          relative z-10
+          mx-auto
+          px-5 sm:px-8 md:px-12 lg:px-16
+          max-w-7xl
+          text-center
+        "
+      >
+        {/* ================= HEADING ================= */}
+        <h2
+          className="
+            font-gilroy-bold
+            text-[#9B2C5D]
+            mb-8 md:mb-10
+            text-2xl
+            sm:text-3xl
+            md:text-4xl
+            lg:text-5xl
+          "
+        >
           About Destination Wedding
         </h2>
 
-        {/* Paragraphs */}
-        <div className="
-          space-y-6 md:space-y-7
-          text-[#16242A]
-
-          text-[15px]
-          md:text-[16.5px]
-          lg:text-[17px]
-
-          leading-[1.8]
-        ">
-
+        {/* ================= PARAGRAPHS ================= */}
+        <div
+          className="
+            space-y-6 md:space-y-7
+            text-[#16242A]
+            text-[14.5px]
+            sm:text-[15px]
+            md:text-[16px]
+            lg:text-[17px]
+            leading-[1.85]
+            max-w-4xl
+            mx-auto
+          "
+        >
           <p>
             Step into a world of luxury and romance with Phoenix Fly. At Phoenix Fly,
             we specialize in creating your dream destination wedding, infusing each
@@ -106,13 +122,11 @@ export default function About() {
           <p>
             We are committed to crafting an unforgettable day, understanding the
             significance of each detail. From the excitement of pre wedding moments to
-            the careful planning that brings your dream to life. We ensure that your
+            the careful planning that brings your dream to life, we ensure that your
             journey towards your happily ever after is marked by joy and elegance.
           </p>
-
         </div>
-
       </div>
     </section>
-  )
+  );
 }
